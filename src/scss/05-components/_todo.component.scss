@@ -1,0 +1,23 @@
+.c-todo {
+  @include flex($align: center);
+  min-height: 80px;
+  margin: $spacing-3x 0;
+  padding: $spacing-3x;
+  background-color: $color-white;
+  border-radius: $spacing-1x;
+  box-shadow: 0 4px 8px rgba($color-black, 0.06);
+}
+
+.c-todo-content {
+  @include flex(column);
+  padding-left: $spacing-3x;
+}
+
+.c-todo__title {
+  font-size: $font-size-normal;
+  color: $color-text-primary;
+}
+
+.c-todo__description {
+  color: $color-text-secondary;
+}

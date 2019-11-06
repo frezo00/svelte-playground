@@ -1,0 +1,19 @@
+.u-padding {
+  @include generate-class($spacings, padding);
+}
+
+.u-padding-top {
+  @include generate-class($spacings, padding-top);
+}
+
+.u-padding-right {
+  @include generate-class($spacings, padding-right);
+}
+
+.u-padding-bottom {
+  @include generate-class($spacings, padding-bottom);
+}
+
+.u-padding-left {
+  @include generate-class($spacings, padding-left);
+}

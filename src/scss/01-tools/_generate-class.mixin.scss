@@ -1,0 +1,15 @@
+@mixin generate-class($map, $property, $important: unquote('!important')) {
+  @if $important != unquote('!important') {
+    $important: null;
+  }
+
+  @if type-of($map) == map and type-of($property) == string {
+    @each $key, $value in $map {
+      &-#{$key} {
+        #{$property}: $value $important;
+      }
+    }
+  } @else {
+    @warn "Invalid type of `#{$map}` or `#{$property}`";
+  }
+}

@@ -1,0 +1,27 @@
+.c-footer {
+  @include flex($justify: center);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.c-footer__button {
+  width: 50px;
+  height: 50px;
+  margin: $spacing-5x 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  font-size: $font-size-xxlarge;
+  color: $color-white;
+  background-color: $color-primary;
+  box-shadow: 0 4px 8px rgba($color-black, 0.3);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:active,
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}

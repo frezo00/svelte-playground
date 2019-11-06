@@ -1,0 +1,21 @@
+.c-header {
+  @include flex();
+  min-height: 100px;
+}
+
+.c-header-wrapper {
+  @include flex($justify: space-between, $align: center);
+}
+
+.c-header-text {
+  @include flex(column);
+  padding: 0 $spacing-3x;
+}
+
+.c-header__title {
+  font-size: $font-size-xxlarge;
+}
+
+.c-header__subtitle {
+  color: rgba($color-white, 0.8);
+}
