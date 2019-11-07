@@ -1,0 +1,28 @@
+.o-form-control {
+  @include flex(column);
+  margin-bottom: $spacing-7x;
+}
+
+.o-form-control__label {
+  padding-bottom: $spacing-1x;
+  flex-grow: 1;
+  color: $color-white;
+  font-size: $font-size-small;
+  text-transform: uppercase;
+}
+
+.o-form-control__input {
+  padding: $spacing-2x $spacing-3x;
+  color: $color-white;
+  font-size: $font-size-normal;
+  border-bottom: 1px solid $color-white;
+}
+
+.o-form__button {
+  min-width: 150px;
+  margin: 0 auto;
+  padding: $spacing-2x $spacing-4x;
+  color: $color-primary;
+  border-radius: 4px;
+  background-color: $color-white;
+}

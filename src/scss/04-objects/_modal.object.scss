@@ -1,0 +1,56 @@
+.o-modal {
+  @include flex(column, center);
+  position: absolute;
+  top: 0;
+  // bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  padding: $spacing-10x $spacing-8x;
+  background-color: $color-primary;
+  z-index: 2;
+
+  @media only screen and (max-height: 500px) and (orientation: landscape) {
+    height: auto;
+  }
+}
+
+.o-modal__wrapper {
+  @include flex(column);
+  height: 100%;
+  width: 100%;
+  max-height: 600px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.o-modal-header {
+  @include flex($justify: space-between, $align: center);
+}
+
+.o-modal-header__title {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.o-modal-header__close {
+  @include flex($justify: center, $align: center);
+  width: 50px;
+  height: 50px;
+  font-size: $font-size-xlarge;
+  color: $color-white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:active,
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+.o-modal__content {
+  @include flex(column, space-around);
+  flex-grow: 1;
+  padding: $spacing-4x 0;
+}

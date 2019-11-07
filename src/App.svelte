@@ -1,7 +1,7 @@
 <script>
   import Header from "./UI/Header.svelte";
   import TodoList from "./Todos/TodoList.svelte";
-  import Footer from "./UI/Footer.svelte";
+  import TodoForm from "./Todos/TodoForm.svelte";
 
   let todos = [
     {
@@ -26,6 +26,13 @@
 
   $: totalTasks = todos.length;
   $: doneTasks = todos.filter(todo => todo.isDone).length;
+
+  let modalOpened = false;
+  function toggleModal(opened) {
+    if (opened !== modalOpened) {
+      modalOpened = opened;
+    }
+  }
 </script>
 
 <style lang="scss" global>
@@ -36,4 +43,14 @@
 <main>
   <TodoList bind:todos />
 </main>
-<Footer />
+<footer class="c-footer">
+  <button class="c-footer__button" on:click={() => toggleModal(true)}>
+    &#43;
+  </button>
+</footer>
+
+{#if modalOpened}
+  <TodoForm
+    on:close={() => toggleModal(false)}
+    on:submit={() => console.log('submitted')} />
+{/if}
