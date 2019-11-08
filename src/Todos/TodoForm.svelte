@@ -4,7 +4,6 @@
   const dispatch = createEventDispatcher();
 
   function onSubmit() {
-    console.log("submit");
     dispatch("submit");
   }
 </script>
