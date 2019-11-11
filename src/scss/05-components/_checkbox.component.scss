@@ -7,9 +7,13 @@
   margin: auto $spacing-3x;
   border: 1px solid $color-primary;
   border-radius: 50%;
-  background-color: rgba($color-primary, 0c-1);
+  background-color: rgba($color-primary, 0.1);
   overflow: hidden;
   cursor: pointer;
+}
+
+.c-checkbox--bordered {
+  border-color: $color-white;
 }
 
 .c-checkbox__input {
