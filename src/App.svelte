@@ -2,6 +2,7 @@
   import Header from "./UI/Header.svelte";
   import TodoList from "./Todos/TodoList.svelte";
   import TodoForm from "./Todos/TodoForm.svelte";
+  import { Todo } from "./models/todo.model.js";
 
   let todos = [
     {
@@ -33,6 +34,17 @@
       modalOpened = opened;
     }
   }
+
+  function onFormSubmit(data) {
+    console.log("form submitted", data.detail);
+
+    const newId = todos[todos.length - 1].id + 1;
+    const { title, description, isChecked } = data.detail;
+    const newTodo = new Todo(newId, isChecked, title, description);
+    todos = [newTodo, ...todos];
+
+    toggleModal(false);
+  }
 </script>
 
 <style lang="scss" global>
@@ -43,14 +55,13 @@
 <main>
   <TodoList bind:todos />
 </main>
-<footer class="c-footer">
-  <button class="c-footer__button" on:click={() => toggleModal(true)}>
-    &#43;
-  </button>
-</footer>
 
 {#if modalOpened}
-  <TodoForm
-    on:close={() => toggleModal(false)}
-    on:submit={() => console.log('submitted')} />
+  <TodoForm on:submit={onFormSubmit} />
 {/if}
+
+<footer class="c-footer">
+  <button
+    class="c-footer__button {modalOpened ? 'c-footer__button--close' : ''}"
+    on:click={() => toggleModal(!modalOpened)} />
+</footer>

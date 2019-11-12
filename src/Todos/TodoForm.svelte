@@ -18,7 +18,7 @@
   function onSubmit() {
     const formValues = { title, description, isChecked };
     console.log("formValues", formValues);
-    dispatch("submit");
+    dispatch("submit", formValues);
   }
 
   function validate(value) {
@@ -29,10 +29,7 @@
 <div class="o-modal">
   <section class="o-modal__wrapper">
     <header class="o-modal-header">
-      <h2 class="o-modal-header__title">Add new todo</h2>
-      <button class="o-modal-header__close" on:click={() => dispatch('close')}>
-        x
-      </button>
+      <h3 class="o-modal-header__title">Add new todo</h3>
     </header>
 
     <form class="o-modal__content" on:submit|preventDefault={onSubmit}>

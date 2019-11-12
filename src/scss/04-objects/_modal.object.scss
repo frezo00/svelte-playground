@@ -1,17 +1,22 @@
 .o-modal {
-  @include flex(column, center);
+  @include flex($justify: center, $align: center);
   position: absolute;
   top: 0;
-  // bottom: 0;
+  bottom: 0;
   right: 0;
   left: 0;
   height: 100%;
-  padding: $spacing-10x $spacing-8x;
-  background-color: $color-primary;
-  z-index: 2;
+  padding: $spacing-6x $spacing-4x 90px;
+  overflow: hidden;
 
-  @media only screen and (max-height: 500px) and (orientation: landscape) {
-    height: auto;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba($color-black, 0.7);
   }
 }
 
@@ -20,8 +25,13 @@
   height: 100%;
   width: 100%;
   max-height: 600px;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 500px;
+  padding: $spacing-5x $spacing-6x;
+  border-radius: 4px;
+  background-color: $color-primary;
+  box-shadow: 0 4px 8px rgba($color-black, 0.2);
+  overflow-y: auto;
+  z-index: 2;
 }
 
 .o-modal-header {
@@ -29,24 +39,10 @@
 }
 
 .o-modal-header__title {
+  margin: $spacing-2x 0;
   text-align: center;
   flex-grow: 1;
-}
-
-.o-modal-header__close {
-  @include flex($justify: center, $align: center);
-  width: 50px;
-  height: 50px;
   font-size: $font-size-xlarge;
-  color: $color-white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:active,
-  &:hover {
-    background-color: darken($color-primary, 10%);
-  }
 }
 
 .o-modal__content {
