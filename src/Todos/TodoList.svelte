@@ -13,7 +13,7 @@
 </script>
 
 <div class="o-container">
-  {#each todos as todo, index (todo.id)}
+  {#each todos as todo (todo.id)}
     <TodoItem {...todo} on:changed={onTodoChange} />
   {:else}
     <em>NO DATA!</em>

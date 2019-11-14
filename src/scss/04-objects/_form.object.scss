@@ -1,0 +1,44 @@
+.o-form-control {
+  @include flex(column);
+  margin-bottom: $spacing-5x;
+}
+
+.o-form-control__label {
+  padding: 0 0 $spacing-2x $spacing-1x;
+  flex-grow: 1;
+  color: $color-white;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.o-form-control__input {
+  padding: $spacing-2x $spacing-4x;
+  color: $color-white;
+  font-size: $font-size-normal;
+  border-top-left-radius: $spacing-1x;
+  border-top-right-radius: $spacing-1x;
+  border-bottom: 2px solid rgba($color-white, 0.5);
+  background-color: rgba($color-white, 0.1);
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: $color-white;
+  }
+}
+
+.o-form-control__error {
+  display: none;
+  color: $color-error;
+  font-size: $font-size-small;
+}
+
+.o-form__button {
+  min-width: 150px;
+  margin: 0 auto;
+  padding: $spacing-2x $spacing-4x;
+  color: $color-primary;
+  border-radius: 4px;
+  background-color: $color-white;
+}

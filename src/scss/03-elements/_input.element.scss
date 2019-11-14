@@ -1,0 +1,16 @@
+input,
+textarea {
+  margin-bottom: 0;
+  border: none;
+  outline: none;
+  background: none;
+  border-radius: 0;
+  line-height: 1.5;
+}
+
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 150px;
+  max-height: 150px;
+}

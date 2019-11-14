@@ -2,18 +2,18 @@
   @include generate-class($spacings, padding);
 }
 
-.u-padding-top {
+.u-padding-t {
   @include generate-class($spacings, padding-top);
 }
 
-.u-padding-right {
+.u-padding-r {
   @include generate-class($spacings, padding-right);
 }
 
-.u-padding-bottom {
+.u-padding-b {
   @include generate-class($spacings, padding-bottom);
 }
 
-.u-padding-left {
+.u-padding-l {
   @include generate-class($spacings, padding-left);
 }

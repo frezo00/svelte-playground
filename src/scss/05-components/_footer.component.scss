@@ -2,26 +2,57 @@
   @include flex($justify: center);
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  align-self: center;
 }
 
 .c-footer__button {
+  @include flex($justify: center, $align: center);
   width: 50px;
   height: 50px;
-  margin: $spacing-5x 0;
+  margin-bottom: $spacing-5x;
   padding: 0;
   border: none;
   border-radius: 50%;
   font-size: $font-size-xxlarge;
   color: $color-white;
   background-color: $color-primary;
-  box-shadow: 0 4px 8px rgba($color-black, 0.3);
+  box-shadow: 0 4px 8px rgba($color-black, 0.2);
   transition: background-color 0.3s ease;
   cursor: pointer;
 
-  &:active,
-  &:hover {
+  &:active {
     background-color: darken($color-primary, 10%);
+  }
+
+  &::before,
+  &::after {
+    @extend %pseudo-line;
+    transition: all 0.3s ease;
+    transition-property: transform, background-color;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
+
+.c-footer__button--close {
+  background-color: $color-white;
+
+  &:active {
+    background-color: lighten($color-primary, 60%);
+  }
+
+  &::before,
+  &::after {
+    background-color: $color-primary;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(135deg);
   }
 }

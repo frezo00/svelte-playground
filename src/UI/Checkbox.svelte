@@ -1,13 +1,16 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  export let id;
-  export let isChecked;
-
   const dispatch = createEventDispatcher();
+
+  export let id = 0;
+  export let isChecked = false;
+  export let isBordered = false;
 </script>
 
-<label class="c-checkbox" for="checkbox-{id}">
+<label
+  class="c-checkbox {isBordered ? 'c-checkbox--bordered' : ''}"
+  for="checkbox-{id}">
   <input
     type="checkbox"
     id="checkbox-{id}"
