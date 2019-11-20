@@ -1,37 +1,45 @@
-import { readable, derived } from "svelte/store";
+import { writable, derived } from "svelte/store";
+import { Todo } from "../models/todo.model";
 
 // REDUCER
-const todoStore = readable([
-  {
-    id: 0,
-    isDone: false,
-    title: "Test 1",
-    description: "Desc 1"
-  },
-  {
-    id: 1,
-    isDone: false,
-    title: "Test 2",
-    description: "Desc 2"
-  },
-  {
-    id: 2,
-    isDone: true,
-    title: "Test 3",
-    description: "Desc 3"
-  }
+const todoStore = writable([
+  new Todo(0, false, "Test 1", "Desc 1"),
+  new Todo(1, false, "Test 2", "Desc 2"),
+  new Todo(2, true, "Test 3", "Desc 3")
 ]);
 
 // SELECTORS
 const todosCount = derived(todoStore, $todoStore => $todoStore.length);
 
-const todosCompleted = derived(todoStore, $todoStore =>
-  $todoStore.filter(todo => todo.isDone)
+const todosCompleted = derived(
+  todoStore,
+  $todoStore => $todoStore.filter(todo => todo.isDone).length
 );
+
+function addTodo(todo) {
+  return todoStore.update(todos => {
+    const nextId = todos[todos.length - 1].id + 1;
+    const { title, description, isChecked } = todo;
+    const newTodo = new Todo(nextId, isChecked, title, description);
+    return [newTodo, ...todos];
+  });
+}
+
+function updateTodo(todo) {
+  return todoStore.update(todos => {
+    todos[getIndex(todo, todos)] = todo;
+    return [...todos];
+  });
+}
+
+function getIndex(item, array) {
+  return array.map(i => i.id).indexOf(item.id);
+}
 
 export default {
   subscribe: todoStore.subscribe,
-  addTodo: todo => todoStore.update(todos => [...todos, todo]),
   getTotal: todosCount,
-  getCompleted: todosCompleted
+  getCompleted: todosCompleted,
+  addTodo,
+  updateTodo
 };
