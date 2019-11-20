@@ -1,6 +1,6 @@
 <script>
   import Header from "./UI/Header.svelte";
-  import TodoItem from "./Todos/TodoItem.svelte";
+  import TodoList from "./Todos/TodoList.svelte";
   import TodoForm from "./Todos/TodoForm.svelte";
   import { Todo } from "./models/todo.model.js";
   import todoStore from "./store/todo.store.js";
@@ -32,11 +32,7 @@
 <Header totalTasks={getTotal} doneTasks={getCompleted} />
 <main>
   <div class="o-container">
-    {#each $todoStore as todo (todo.id)}
-      <TodoItem {...todo} on:changed={onTodoChange} />
-    {:else}
-      <em>NO DATA!</em>
-    {/each}
+    <TodoList todos={todoStore} on:changed={onTodoChange} />
   </div>
 </main>
 
