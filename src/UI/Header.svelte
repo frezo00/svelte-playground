@@ -1,6 +1,6 @@
 <script>
-  export let totalTasks = 0;
-  export let doneTasks = 0;
+  export let totalTasks;
+  export let doneTasks;
 </script>
 
 <header class="c-header">
@@ -10,7 +10,7 @@
       <small class="c-header__subtitle">November 5th, 2019</small>
     </div>
     <div class="c-header-text u-flex-column-hor-center">
-      <span class="c-header__title">{doneTasks}/{totalTasks}</span>
+      <span class="c-header__title">{$doneTasks}/{$totalTasks}</span>
       <small class="c-header__subtitle">done</small>
     </div>
   </div>

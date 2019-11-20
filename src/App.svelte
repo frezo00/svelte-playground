@@ -1,32 +1,12 @@
 <script>
   import Header from "./UI/Header.svelte";
-  import TodoList from "./Todos/TodoList.svelte";
+  import TodoItem from "./Todos/TodoItem.svelte";
   import TodoForm from "./Todos/TodoForm.svelte";
   import { Todo } from "./models/todo.model.js";
+  import todoStore from "./store/todo.store.js";
 
-  let todos = [
-    {
-      id: 0,
-      isDone: false,
-      title: "Test 1",
-      description: "Desc 1"
-    },
-    {
-      id: 1,
-      isDone: false,
-      title: "Test 2",
-      description: "Desc 2"
-    },
-    {
-      id: 2,
-      isDone: true,
-      title: "Test 3",
-      description: "Desc 3"
-    }
-  ];
-
-  $: totalTasks = todos.length;
-  $: doneTasks = todos.filter(todo => todo.isDone).length;
+  todoStore.subscribe(t => console.log("sub", t));
+  const { getTotal, getCompleted } = todoStore;
 
   let modalOpened = false;
   function toggleModal(opened) {
@@ -35,14 +15,12 @@
     }
   }
 
+  function onTodoChange(changedTodo) {
+    todoStore.updateTodo(changedTodo.detail);
+  }
+
   function onFormSubmit(data) {
-    console.log("form submitted", data.detail);
-
-    const newId = todos[todos.length - 1].id + 1;
-    const { title, description, isChecked } = data.detail;
-    const newTodo = new Todo(newId, isChecked, title, description);
-    todos = [newTodo, ...todos];
-
+    todoStore.addTodo(data.detail);
     toggleModal(false);
   }
 </script>
@@ -51,9 +29,15 @@
   @import "./scss/global.scss";
 </style>
 
-<Header {totalTasks} {doneTasks} />
+<Header totalTasks={getTotal} doneTasks={getCompleted} />
 <main>
-  <TodoList bind:todos />
+  <div class="o-container">
+    {#each $todoStore as todo (todo.id)}
+      <TodoItem {...todo} on:changed={onTodoChange} />
+    {:else}
+      <em>NO DATA!</em>
+    {/each}
+  </div>
 </main>
 
 {#if modalOpened}
