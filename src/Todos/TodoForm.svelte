@@ -1,7 +1,9 @@
 <script>
-  import { createEventDispatcher } from "svelte";
-  import { isRequired } from "../validators";
   import Checkbox from "../UI/Checkbox.svelte";
+
+  import { createEventDispatcher } from "svelte";
+  import { scale, fade } from "svelte/transition";
+  import { isRequired } from "../validators";
 
   const dispatch = createEventDispatcher();
 
@@ -26,8 +28,8 @@
   }
 </script>
 
-<div class="o-modal">
-  <section class="o-modal__wrapper">
+<div class="o-modal" transition:fade={{ duration: 200 }}>
+  <section class="o-modal__wrapper" transition:scale>
     <header class="o-modal-header">
       <h3 class="o-modal-header__title">Add new todo</h3>
     </header>

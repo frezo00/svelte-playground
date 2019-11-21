@@ -18,7 +18,7 @@ const todosCompleted = derived(
 
 function addTodo(todo) {
   return todoStore.update(todos => {
-    const nextId = todos[todos.length - 1].id + 1;
+    const nextId = Math.max(...todos.map(t => t.id)) + 1;
     const { title, description, isChecked } = todo;
     const newTodo = new Todo(nextId, isChecked, title, description);
     return [newTodo, ...todos];
